@@ -19,6 +19,9 @@
 package co.rsk.rpc;
 
 import co.rsk.rpc.modules.eth.EthModule;
+import org.ethereum.rpc.doc.annotations.JsonRpcDoc;
+import org.ethereum.rpc.doc.annotations.JsonRpcDocRequestParameter;
+import org.ethereum.rpc.doc.annotations.JsonRpcDocResponse;
 import org.ethereum.rpc.Web3;
 import org.ethereum.rpc.dto.BlockResultDTO;
 import org.ethereum.rpc.dto.CompilationResultDTO;
@@ -37,6 +40,44 @@ public interface Web3EthModule {
         return getEthModule().sign(addr, data);
     }
 
+    @JsonRpcDoc(
+        description = "Executes a new message call immediately without creating a transaction on the block chain.",
+        isWriteMethod = true,
+        requestExamples = "eth_call.yaml/request/default",
+        requestParams = {
+            @JsonRpcDocRequestParameter(
+                name = "args",
+                alias = "transaction",
+                description = "eth_call.yaml/description/request/transaction",
+                loadDescriptionFromFile = true,
+                attachModel = true
+            ),
+            @JsonRpcDocRequestParameter(
+                name = "bnOrId",
+                alias = "blockNumberOrId",
+                description = "**QUANTITY|TAG** - integer block number, or the string \"latest\", \"earliest\" or \"pending\", see the default block parameter"
+            )
+        },
+        responses = {
+            @JsonRpcDocResponse(
+                description = "**DATA** - the return value of executed contract.",
+                code = "Success",
+                examplePath = "eth_call.yaml/response/success"
+            ),
+            @JsonRpcDocResponse(
+                description = "method parameters invalid.",
+                code = "-32602",
+                examplePath = "generic.yaml/response/methodInvalid",
+                success = false
+            ),
+            @JsonRpcDocResponse(
+                description = "Something unexpected happened",
+                code = "-32603",
+                examplePath = "generic.yaml/response/internalServerError",
+                success = false
+            )
+        }
+    )
     default String eth_call(Web3.CallArguments args, String bnOrId) {
         return getEthModule().call(args, bnOrId);
     }
@@ -91,10 +132,76 @@ public interface Web3EthModule {
         return getEthModule().getCode(address, blockId);
     }
 
+    @JsonRpcDoc(
+        description = "Creates new message call transaction or a contract creation for signed transactions.",
+        summary = "Creates new message call transaction or a contract creation.",
+        requestExamples = "eth_sendTransaction.yaml/request/default",
+        isWriteMethod = true,
+        requestParams = {
+            @JsonRpcDocRequestParameter(
+                name = "rawData",
+                description = "**DATA**, The signed transaction data."
+            )
+        },
+        responses = {
+            @JsonRpcDocResponse(
+                description =
+                    "**DATA**, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.\n" +
+                    "Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.",
+                code = "Success",
+                examplePath = "eth_sendRawTransaction.yaml/response/success"
+            ),
+            @JsonRpcDocResponse(
+                description = "method parameters invalid.",
+                code = "-32602",
+                examplePath = "generic.yaml/response/methodInvalid"
+            ),
+            @JsonRpcDocResponse(
+                description = "Something unexpected happened",
+                code = "-32603",
+                examplePath = "generic.yaml/response/internalServerError"
+            )
+        }
+    )
     default String eth_sendRawTransaction(String rawData) {
         return getEthModule().sendRawTransaction(rawData);
     }
 
+    @JsonRpcDoc(
+        description = "Creates new message call transaction or a contract creation, if the data field contains code.",
+        summary = "Creates new message call transaction or a contract creation.",
+        requestExamples = "eth_sendTransaction.yaml/request/default",
+        isWriteMethod = true,
+        requestParams = {
+            @JsonRpcDocRequestParameter(
+                name = "args",
+                alias = "transaction",
+                description = "eth_sendTransaction.yaml/description/request",
+                loadDescriptionFromFile = true
+            )
+        },
+        responses = {
+            @JsonRpcDocResponse(
+                description =
+                    "*DATA*, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.\n" +
+                    "Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.",
+                code = "Success",
+                examplePath = "eth_sendTransaction.yaml/response/success"
+            ),
+            @JsonRpcDocResponse(
+                description = "method parameters invalid.",
+                code = "-32602",
+                examplePath = "generic.yaml/response/methodInvalid",
+                success = false
+            ),
+            @JsonRpcDocResponse(
+                description = "Something unexpected happened",
+                code = "-32603",
+                examplePath = "generic.yaml/response/internalServerError",
+                success = false
+            )
+        }
+    )
     default String eth_sendTransaction(Web3.CallArguments args) {
         return getEthModule().sendTransaction(args);
     }
