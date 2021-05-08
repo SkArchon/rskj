@@ -55,7 +55,7 @@ public interface Web3EthModule {
             @JsonRpcDocRequestParameter(
                 name = "bnOrId",
                 alias = "blockNumberOrId",
-                description = "**QUANTITY|TAG** - integer block number, or the string \"latest\", \"earliest\" or \"pending\", see the default block parameter"
+                description = "**QUANTITY|TAG** - integer block number, or the string 'latest', 'earliest' or 'pending', see the default block parameter"
             )
         },
         responses = {
@@ -65,13 +65,13 @@ public interface Web3EthModule {
                 examplePath = "eth_call.yaml/response/success"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false
@@ -152,12 +152,12 @@ public interface Web3EthModule {
                 examplePath = "eth_sendRawTransaction.yaml/response/success"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid"
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError"
             )
@@ -176,26 +176,26 @@ public interface Web3EthModule {
             @JsonRpcDocRequestParameter(
                 name = "args",
                 alias = "transaction",
-                description = "eth_sendTransaction.yaml/description/request",
+                description = "eth_sendTransaction.yaml/description/request/transaction",
                 loadDescriptionFromFile = true
             )
         },
         responses = {
             @JsonRpcDocResponse(
                 description =
-                    "*DATA*, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.\n" +
+                    "**DATA**, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.\n" +
                     "Use eth_getTransactionReceipt to get the contract address, after the transaction was mined, when you created a contract.",
                 code = "Success",
                 examplePath = "eth_sendTransaction.yaml/response/success"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false

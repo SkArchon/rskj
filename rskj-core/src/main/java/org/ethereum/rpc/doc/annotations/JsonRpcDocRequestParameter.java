@@ -32,8 +32,16 @@ public @interface JsonRpcDocRequestParameter {
      */
     boolean loadDescriptionFromFile() default false;
 
+    /**
+     * Use this if you want to add the model to the model documentation
+     * and add a hyperlink
+     */
     boolean attachModel() default false;
 
+    /**
+     * If this is not the primary documentation method parameter
+     * this will skip this request parameter from being extracted then
+     */
     boolean usePrimary() default false;
 
 }

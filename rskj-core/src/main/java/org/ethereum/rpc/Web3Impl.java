@@ -220,7 +220,7 @@ public class Web3Impl implements Web3 {
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false
@@ -269,7 +269,7 @@ public class Web3Impl implements Web3 {
                 examplePath = "generic.yaml/response/methodInvalid"
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError"
             )
@@ -429,16 +429,16 @@ public class Web3Impl implements Web3 {
         return toQuantityJsonHex(b);
     }
 
-    @Override
     @JsonRpcDoc(
         isWriteMethod = false,
         requestParams = {
             @JsonRpcDocRequestParameter(
-                name="address",
-                usePrimary = true
+                    name="address",
+                    usePrimary = true
             ),
         }
     )
+    @Override
     public String eth_getBalance(String address) {
         return eth_getBalance(address, "latest");
     }
@@ -451,27 +451,27 @@ public class Web3Impl implements Web3 {
         requestParams = {
             @JsonRpcDocRequestParameter(
                 name = "address",
-                description = "DATA, 20 Bytes - address to check for balance."
+                description = "**DATA**, 20 Bytes - address to check for balance."
             ),
             @JsonRpcDocRequestParameter(
                 name = "block",
-                description = "QUANTITY|TAG - integer block number, or the string \"latest\", \"earliest\" or \"pending\", see the default block parameter"
+                description = "**QUANTITY|TAG** - integer block number, or the string \"latest\", \"earliest\" or \"pending\", see the default block parameter"
             )
         },
         responses = {
             @JsonRpcDocResponse(
-                description = "QUANTITY - integer of the current balance in wei.",
+                description = "**QUANTITY** - integer of the current balance in wei.",
                 code = "Success",
                 examplePath = "eth_getBalance.yaml/response/success"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false
@@ -672,7 +672,7 @@ public class Web3Impl implements Web3 {
         requestParams = {
             @JsonRpcDocRequestParameter(
                 name = "bnOrId",
-                description = "integer of a block number, or the string \"earliest\", \"latest\" or \"pending\", as in the default block parameter."
+                description = "integer of a block number, or the string 'earliest', 'latest' or 'pending', as in the default block parameter."
             ),
             @JsonRpcDocRequestParameter(
                 name = "fullTransactionObjects",
@@ -693,19 +693,19 @@ public class Web3Impl implements Web3 {
                 examplePath = "eth_getBlockByNumber.yaml/response/successWithoutTxn"
             ),
             @JsonRpcDocResponse(
-                description = "invalid block number passed.",
+                description = "Invalid block number passed.",
                 code = "-32602",
                 examplePath = "eth_getBlockByNumber.yaml/response/invalidBlockNumber",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false
@@ -1057,13 +1057,13 @@ public class Web3Impl implements Web3 {
                 examplePath = "eth_getLogs.yaml/response/successWithoutLogs"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false

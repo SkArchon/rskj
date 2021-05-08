@@ -60,13 +60,13 @@ public interface Web3DebugModule {
                 examplePath = "debug_traceTransaction.yaml/response/success"
             ),
             @JsonRpcDocResponse(
-                description = "method parameters invalid.",
+                description = "Method parameters invalid.",
                 code = "-32602",
                 examplePath = "generic.yaml/response/methodInvalid",
                 success = false
             ),
             @JsonRpcDocResponse(
-                description = "Something unexpected happened",
+                description = "Something unexpected happened.",
                 code = "-32603",
                 examplePath = "generic.yaml/response/internalServerError",
                 success = false
